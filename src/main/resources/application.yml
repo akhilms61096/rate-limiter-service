@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: rate-limiter-service
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+rate-limiter:
+  mode: local          # switch to 'redis' for distributed mode
+  capacity: 10         # max burst
+  refill-rate-per-second: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
